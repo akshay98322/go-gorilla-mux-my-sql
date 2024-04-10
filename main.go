@@ -19,7 +19,7 @@ func main() {
 
 	// Define your HTTP routes using the router
 	r.HandleFunc("/user", routers.CreateUserHandler).Methods("POST")
-	// r.HandleFunc("/user", routers.GetAllUsersHandler).Methods("GET")
+	r.HandleFunc("/user", routers.GetAllUsersHandler).Methods("GET")
 	r.HandleFunc("/user/{id}", routers.GetUserHandler).Methods("GET")
 	r.HandleFunc("/user/{id}", routers.UpdateUserHandler).Methods("PUT")
 	r.HandleFunc("/user/{id}", routers.DeleteUserHandler).Methods("DELETE")

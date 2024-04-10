@@ -9,7 +9,11 @@ docker-compose up
 ```
 docker-compose down
 ```
-### sample post
+### sample url
+```
+http://localhost:8080/user
+```
+### sample body
 ```
 {
   "name": "Test Name",

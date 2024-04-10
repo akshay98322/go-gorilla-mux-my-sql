@@ -50,6 +50,30 @@ func GetUser(db *sql.DB, id int) (*models.User, error) {
 	return user, nil
 }
 
+func GetAllUsers(db *sql.DB) ([]models.User, error) {
+	query := "SELECT * FROM users;"
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var users []models.User
+
+	for rows.Next() {
+		user := models.User{}
+		err := rows.Scan(&user.ID, &user.Name, &user.Email)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
 func UpdateUser(db *sql.DB, id int, name, email string) error {
 	query := "UPDATE users SET name = ?, email = ? WHERE id = ?"
 	_, err := db.Exec(query, name, email, id)

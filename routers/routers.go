@@ -60,6 +60,25 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
+func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open(constants.DbDriver, constants.DbUser+":"+constants.DbPass+"@/"+constants.DbName)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	// Call the GetUser function to fetch the user data from the database
+	user, err := utils.GetAllUsers(db)
+	if err != nil {
+		http.Error(w, "Users not found", http.StatusNotFound)
+		return
+	}
+
+	// Convert the user object to JSON and send it in the response
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(user)
+}
+
 func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open(constants.DbDriver, constants.DbUser+":"+constants.DbPass+"@/"+constants.DbName)
 	if err != nil {
