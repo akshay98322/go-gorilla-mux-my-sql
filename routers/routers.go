@@ -140,7 +140,7 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user := utils.DeleteUser(db, userID)
+	err = utils.DeleteUser(db, userID)
 	if err != nil {
 		http.Error(w, "User not found", http.StatusNotFound)
 		return
@@ -148,7 +148,4 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintln(w, "User deleted successfully")
 
-	// Convert the user object to JSON and send it in the response
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
 }
