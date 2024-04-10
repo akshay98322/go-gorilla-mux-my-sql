@@ -52,7 +52,7 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	// Convert 'id' to an integer
 	userID, err := strconv.Atoi(idStr)
 	if err != nil {
-		http.Error(w, "User id is invalid", http.StatusNotFound)
+		http.Error(w, "Invalid 'id' parameter", http.StatusBadRequest)
 		return
 	}
 
@@ -100,6 +100,10 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Convert 'id' to an integer
 	userID, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid 'id' parameter", http.StatusBadRequest)
+		return
+	}
 
 	var user models.User
 	err = json.NewDecoder(r.Body).Decode(&user)
@@ -108,7 +112,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Call the GetUser function to fetch the user data from the database
-	utils.UpdateUser(db, userID, user.Name, user.Email)
+	err = utils.UpdateUser(db, userID, user.Name, user.Email)
 	if err != nil {
 		http.Error(w, "User not found", http.StatusNotFound)
 		return
