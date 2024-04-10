@@ -22,7 +22,11 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Parse JSON data from the request body
 	var user models.User
-	json.NewDecoder(r.Body).Decode(&user)
+	err = json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		http.Error(w, "User details are not valid", http.StatusNotFound)
+		return
+	}
 
 	err = utils.CreateUser(db, user.Name, user.Email)
 	if err != nil {
