@@ -4,11 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/akshay98322/go-gin-mysql-docker-compose/routers"
+	"github.com/akshay98322/Go-gorilla-mux-my-sql/routers"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 )
-
 
 func main() {
 	// Create a new router

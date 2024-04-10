@@ -1,4 +1,4 @@
-module github.com/akshay98322/go-gin-mysql-docker-compose
+module github.com/akshay98322/Go-gorilla-mux-my-sql
 
 go 1.20
 

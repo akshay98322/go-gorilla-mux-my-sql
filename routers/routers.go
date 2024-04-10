@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/akshay98322/go-gin-mysql-docker-compose/constants"
-	models "github.com/akshay98322/go-gin-mysql-docker-compose/model"
-	"github.com/akshay98322/go-gin-mysql-docker-compose/utils"
+	"github.com/akshay98322/Go-gorilla-mux-my-sql/constants"
+	models "github.com/akshay98322/Go-gorilla-mux-my-sql/model"
+	"github.com/akshay98322/Go-gorilla-mux-my-sql/utils"
 	"github.com/gorilla/mux"
 )
 
