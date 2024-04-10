@@ -72,7 +72,7 @@ func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	// Call the GetUser function to fetch the user data from the database
-	user, err := utils.GetAllUsers(db)
+	users, err := utils.GetAllUsers(db)
 	if err != nil {
 		http.Error(w, "Users not found", http.StatusNotFound)
 		return
@@ -80,7 +80,7 @@ func GetAllUsersHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Convert the user object to JSON and send it in the response
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
+	json.NewEncoder(w).Encode(users)
 }
 
 func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
