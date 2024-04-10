@@ -24,7 +24,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	json.NewDecoder(r.Body).Decode(&user)
 
-	utils.CreateUser(db, user.Name, user.Email)
+	err = utils.CreateUser(db, user.Name, user.Email)
 	if err != nil {
 		http.Error(w, "Failed to create user", http.StatusInternalServerError)
 		return
