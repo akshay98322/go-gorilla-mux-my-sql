@@ -2,7 +2,7 @@ package constants
 
 const (
 	DbDriver = "mysql"
-	DbUser   = "test-user"
-	DbPass   = "test-pass"
-	DbName   = "test-db"
+	DbUser   = "test_user"
+	DbPass   = "test_pass"
+	DbName   = "test_db"
 )

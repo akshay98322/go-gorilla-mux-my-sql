@@ -7,13 +7,13 @@ services:
     restart: always
     container_name: mysql-container
     environment:
-      MYSQL_DATABASE: 'test-db'
+      MYSQL_DATABASE: 'test_db'
       # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'test-user'
+      MYSQL_USER: 'test_user'
       # You can use whatever password you like
-      MYSQL_PASSWORD: 'test-pass'
+      MYSQL_PASSWORD: 'test_pass'
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'root-pass'
+      MYSQL_ROOT_PASSWORD: 'root_pass'
     ports:
       # <Port exposed> : <MySQL Port running inside container>
       - '3306:3306'
