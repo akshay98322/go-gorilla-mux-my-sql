@@ -38,14 +38,14 @@ func CreateUser(db *sql.DB, name, email string) error {
 	return nil
 }
 
-func GetUser(db *sql.DB, id int) (*models.User, error) {
+func GetUser(db *sql.DB, id int) (models.User, error) {
 	query := "SELECT * FROM users WHERE id = ?"
 	row := db.QueryRow(query, id)
 
-	user := &models.User{}
+	user := models.User{}
 	err := row.Scan(&user.ID, &user.Name, &user.Email)
 	if err != nil {
-		return nil, err
+		return user, err
 	}
 	return user, nil
 }
